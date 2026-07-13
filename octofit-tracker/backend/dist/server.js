@@ -7,12 +7,14 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const routes_1 = __importDefault(require("./routes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = Number(process.env.PORT || 8000);
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+app.use(routes_1.default);
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', message: 'Octofit Tracker API is running' });
 });

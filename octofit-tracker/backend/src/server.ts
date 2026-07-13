@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import routes from './routes';
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_d
 
 app.use(cors());
 app.use(express.json());
+app.use(routes);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: 'Octofit Tracker API is running' });
